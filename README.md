@@ -1,2 +1,221 @@
-# Awesome-DLMs-post-training
-A curated list of papers and selected technical blogs on the post-training of Diffusion Language Models (DLMs).
+# Awesome DLMs Post-Training
+
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+[![License: CC0-1.0](https://img.shields.io/badge/License-CC0--1.0-lightgrey.svg)](LICENSE)
+
+**A curated list of papers, frameworks, and resources on post-training for Diffusion Language Models (dLLMs): SFT, RL (GRPO/PPO/RLVR), preference optimization, safety alignment, distillation, and efficient adaptation.**
+
+[English](README.md) | [中文](README_zh.md)
+
+## 📢 News
+
+- **[2026-07]** 🎉 This repository is released! We collected 100+ papers on dLLM post-training. Contributions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## 📖 What Counts as dLLM Post-Training?
+
+This list focuses on the **post-training** stage of Diffusion Language Models, i.e. everything that happens after (or adapts) the base diffusion pre-training:
+
+- **SFT / instruction tuning** — supervised fine-tuning for instruction following, chat, and task adaptation
+- **Reinforcement learning** — GRPO/PPO-style policy optimization, RLVR, reward fine-tuning for reasoning
+- **Preference optimization** — DPO/KTO-style alignment from preference data
+- **Safety & alignment** — safety training, jailbreak robustness, alignment analysis specific to dLLMs
+- **Distillation & efficiency adaptation** — few-step/consistency distillation, guidance training, confidence-aware fine-tuning, speculative decoding with trained components
+- **Adaptation techniques** — AR→DLM conversion, long-context post-training
+
+We cover **masked/absorbing, block, and continuous diffusion LMs**, including **multimodal** and **code** dLLMs. Pure pre-training architecture papers are included only when they establish training objectives or pipelines that post-training builds upon.
+
+## 📑 Table of Contents
+
+- [Surveys](#surveys) (3)
+- [RL & Reasoning](#rl--reasoning) (31)
+- [Preference Optimization](#preference-optimization) (2)
+- [Safety & Alignment](#safety--alignment) (2)
+- [SFT & Instruction Tuning](#sft--instruction-tuning) (6)
+- [Training Objectives & Techniques](#training-objectives--techniques) (17)
+- [Efficiency & Distillation](#efficiency--distillation) (22)
+- [Multimodal & Code dLLMs](#multimodal--code-dllms) (21)
+- [Frameworks & Open-source Repos](#frameworks--open-source-repos)
+- [Star History](#star-history)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
+
+## Surveys
+
+- [08/14/2025] **[A Survey on Diffusion Language Models](https://arxiv.org/abs/2508.10875)** — The most comprehensive DLM survey to date, systematically covering pre-training, SFT, RL alignment, inference acceleration, and applications, with a dedicated post-training chapter. *Tianyi Li, Mingda Chen, Bowei Guo, Zhiqiang Shen*, arXiv 2025. [[code]](https://github.com/VILA-Lab/Awesome-DLMs)
+- [06/2025] **[Discrete Diffusion in Large Language and Multimodal Models: A Survey](https://arxiv.org/abs/2506.13759)** — Focuses on discrete diffusion formulations, training, and inference in large language and multimodal models, covering LLaDA, Dream, Dimple, and more. *Runpeng Yu, Qi Li, Xinchao Wang*, arXiv 2025. [[code]](https://github.com/LiQiiiii/DLLM-Survey)
+- [2024] **[Diffusion Models in Text Generation: A Survey](https://doi.org/10.7717/peerj-cs.1905)** — An earlier survey of diffusion models for text generation, useful for tracing continuous-diffusion text work from the Diffusion-LM era. *Qiuhua Yi, Xiangfan Chen, et al.*, PeerJ Computer Science 2024.
+
+## RL & Reasoning
+
+- [07/16/2026] **[Mask-Aware Policy Gradients for Diffusion Language Models](https://arxiv.org/abs/2607.15200)** — Mask-aware policy gradient methods tailored to diffusion LMs. *Haran Raajesh, Kulin Shah, Adam Klivans, Philipp Krähenbühl*, COLM 2026.
+- [06/30/2026] **[SLIM-RL: Risk-Budgeted Random-Masking RL for Diffusion LLMs Without Trajectory Slicing](https://arxiv.org/abs/2607.00208)** — Addresses TraceRL's trajectory-slicing cost scaling with block size via a τ-budget decoder that bounds commit risk plus a trajectory-free random-masking objective. *Ruikang Zhao, Zhenting Wang, Han Gao, Ligong Han*, arXiv 2026.
+- [05/13/2026] **[Beyond Mode-Seeking RL: Trajectory-Balance Post-Training for Diffusion Language Models](https://arxiv.org/abs/2605.13935)** — Introduces a trajectory-balance (GFlowNet-style) objective to mitigate the diversity collapse of mode-seeking RL. arXiv 2026.
+- [05/11/2026] **[Relative Score Policy Optimization for Diffusion Language Models (RSPO)](https://arxiv.org/abs/2605.10218)** — Replaces likelihoods with relative scores for group-based policy optimization. arXiv 2026.
+- [03/13/2026] **[Reinforcement Learning for Diffusion LLMs with Entropy-Guided Step Selection and Stepwise Advantages (EGSPO)](https://arxiv.org/abs/2603.12554)** — Entropy-guided selection of critical denoising steps with stepwise advantages, reducing the variance and cost of dLLM RL. *Vishnu Teja Kunde, Fatemeh Doudi, et al.*, arXiv 2026. [[code]](https://github.com/vishnutez/egspo-dllm-rl)
+- [03/2026] **[LFPO: Likelihood-Free Policy Optimization for Masked Diffusion Models](https://arxiv.org/abs/2603.01563)** — A fully likelihood-free RLVR policy optimization method that sidesteps the high-variance likelihood approximations of prior approaches. *Chenxing Wei, Jiazhen Kang, et al.* arXiv 2026.
+- [02/06/2026] **[Diffusion-State Policy Optimization for Masked Diffusion Language Models (DSPO)](https://arxiv.org/abs/2602.06462)** — Designs policy optimization over intermediate diffusion states as decision states, rather than scoring only final sequences. arXiv 2026.
+- [01/21/2026] **[The Flexibility Trap: Rethinking the Value of Arbitrary Order in Diffusion Language Models (JustGRPO)](https://arxiv.org/abs/2601.15165)** — Argues that arbitrary-order flexibility is not necessary: a straightforward GRPO transplant matches complex diffusion-specific RL modifications (using ESPO as the comparison baseline). *Zanlin Ni, Shenzhi Wang, Yang Yue, et al.*, ICML 2026 Oral (Outstanding Paper Award). [[code]](https://github.com/LeapLabTHU/JustGRPO)
+- [01/05/2026] **[Progressive Block Scaling for MDMs Through Trajectory-Aware RL (T\*)](https://arxiv.org/abs/2601.11214)** — A curriculum-style progressive block-size scaling training scheme built on TraceRL. arXiv 2026.
+- [12/24/2025] **[dUltra: Ultra-Fast Diffusion Large Language Models via Reinforcement Learning](https://arxiv.org/abs/2512.21446)** — Uses GRPO to learn a "path planner" (unmasking order/parallelism), greatly accelerating diffusion LLM decoding while preserving quality. *Shirui Chen, Jiantao Jiao, Lillian J. Ratliff, Banghua Zhu*, arXiv 2025. [[code]](https://github.com/chinsengi/dUltra-os)
+- [12/10/2025] **[d-TreeRPO: Towards More Reliable Policy Optimization for Diffusion Language Models](https://arxiv.org/abs/2512.09675)** — Tree-structured grouping/rollout organization improves the reliability of dLLM policy optimization. *Leyi Pan, Shuchang Tao, et al.*, ACL 2026 Main. [[code]](https://github.com/THU-BPM/d-TreeRPO)
+- [12/09/2025] **[Learning Unmasking Policies for Diffusion Language Models](https://arxiv.org/abs/2512.09106)** — Instead of fixed confidence-based sampling, uses RL to learn a standalone unmasking-order policy module, in the lineage of DCoLT/UPM. *Metod Jazbec, Theo X. Olausson, Louis Béthune, et al.*, arXiv 2025. [[code]](https://github.com/apple/ml-rl-dllm)
+- [12/03/2025] **[Principled RL for Diffusion LLMs Emerges from a Sequence-Level Perspective (ESPO)](https://arxiv.org/abs/2512.03759)** — Treats entire sequence generation as a single action, using the ELBO as a sequence-level likelihood surrogate with per-token normalized importance ratios; +20–40 points over token-level baselines on Countdown. *Jingyang Ou, Jiaqi Han, Minkai Xu, et al.*, ICLR 2026. [[code]](https://github.com/ML-GSAI/ESPO)
+- [10/24/2025] **[MRO: Enhancing Reasoning in Diffusion Language Models via Multi-Reward Optimization](https://arxiv.org/abs/2510.21473)** — Joint multi-reward optimization to improve dLLM reasoning. arXiv 2025.
+- [10/13/2025] **[Boundary-Guided Policy Optimization for Memory-Efficient RL of Diffusion LLMs (BGPO)](https://arxiv.org/abs/2510.11683)** — Exploits the boundary structure of block diffusion to maximize a linear lower bound of the ELBO, significantly reducing RL training memory. *Nianyi Lin, Jiajie Zhang, Lei Hou, Juanzi Li*, arXiv 2025. [[code]](https://github.com/THU-KEG/BGPO)
+- [10/10/2025] **[SPG: Sandwiched Policy Gradient for Masked Diffusion Language Models](https://arxiv.org/abs/2510.09541)** — Constructs a "sandwich" objective from log-likelihood upper and lower bounds for policy gradients, significantly outperforming ELBO-based methods (d1/wd1). *Chengyu Wang, Paria Rashidinejad, DiJia Su, et al.*, ICLR 2026. [[code]](https://github.com/facebookresearch/SPG)
+- [10/09/2025] **[Improving Reasoning for Diffusion Language Models via Group Diffusion Policy Optimization (GDPO)](https://arxiv.org/abs/2510.08554)** — A diffusion adaptation of GRPO that improves how group-relative advantages are assigned across denoising steps, surpassing diffu-GRPO. *Kevin Rojas, Jiahe Lin, Kashif Rasul, et al.*, arXiv 2025.
+- [10/09/2025] **[Enhancing Reasoning for Diffusion LLMs via Distribution Matching Policy Optimization (DMPO)](https://arxiv.org/abs/2510.08233)** — Formulates RL as a distribution matching problem, avoiding direct estimation of intractable likelihoods. *Yuchen Zhu, Wei Guo, Jaemoo Choi, et al.*, arXiv 2025.
+- [10/05/2025] **[Principled and Tractable RL for Reasoning with Diffusion Language Models](https://arxiv.org/abs/2510.04019)** — Derives tractable RL objectives for diffusion LLMs from first principles, with more rigorous likelihood approximations and update rules replacing biased surrogates like ELBO/one-step estimates. *Anthony Zhan*, arXiv 2025.
+- [10/03/2025] **[Consolidating Reinforcement Learning for Multimodal Discrete Diffusion Models (MaskGRPO)](https://arxiv.org/abs/2510.02880)** — A unified GRPO training framework for LLaDA/MMaDA-style multimodal discrete diffusion models. *Tianren Ma, Mu Zhang, Yibing Wang, Qixiang Ye*, ICLR 2026. [[code]](https://github.com/martian422/MaskGRPO)
+- [10/02/2025] **[Step-Aware Policy Optimization for Reasoning in Diffusion Large Language Models (SAPO)](https://arxiv.org/abs/2510.01544)** — Introduces denoising-step-level process rewards, guiding dLLMs to make progressive gains along a latent reasoning hierarchy. *Shenghui Xie, Lingjing Kong, Xiangchen Song, et al.*, arXiv 2025.
+- [10/02/2025] **[DiFFPO: Training Diffusion LLMs to Reason Fast and Furious via Reinforcement Learning](https://arxiv.org/abs/2510.02212)** — A unified RL framework that jointly trains the model and the sampler policy, improving both reasoning accuracy and latency, and pushing the accuracy/compute Pareto frontier. *Hanyang Zhao, Dawen Liang, Wenpin Tang, et al.*, arXiv 2025.
+- [09/28/2025] **[Taming Masked Diffusion Language Models via Consistency Trajectory RL with Fewer Decoding Steps (CJ-GRPO)](https://arxiv.org/abs/2509.23924)** — Enforces consistency between rollout and optimization trajectories, resolving the train-inference mismatch between MDLM non-causal decoding and AR-style RL. *Jingyi Yang, Guanxu Chen, Xuhao Hu, Jing Shao*, arXiv 2025.
+- [09/12/2025] **[Inpainting-Guided Policy Optimization for Diffusion Large Language Models (IGPO)](https://arxiv.org/abs/2509.10396)** — Leverages the partial inpainting ability of diffusion models to inject partial ground-truth answer fragments into rollouts, easing exploration under sparse rewards. *Siyan Zhao, Mengchen Liu, Jing Huang, et al.*, arXiv 2025. [[code]](https://github.com/facebookresearch/igpo)
+- [09/08/2025] **[Revolutionizing Reinforcement Learning Framework for Diffusion Large Language Models (TraceRL / TraDo)](https://arxiv.org/abs/2509.06949)** — Trajectory-aware RL aligning the training objective with the model's actual inference trajectory, with a diffusion value model for variance reduction; yields TraDo-4B/8B and the first long-CoT diffusion model TraDo-8B-Thinking; dLLM-RL is the most comprehensive open-source dLLM post-training framework. *Yinjie Wang, Ling Yang, Bowen Li, et al.*, ICLR 2026. [[code]](https://github.com/Gen-Verse/dLLM-RL)
+- [08/18/2025] **[MDPO: Overcoming the Training-Inference Divide of Masked Diffusion Language Models](https://arxiv.org/abs/2508.13148)** — Optimizes the policy following the progressive refinement schedule used at inference, bridging the MDLM training-inference gap. *Chaofan Lin et al.*, arXiv 2025. [[code]](https://github.com/autonomousvision/mdpo)
+- [07/07/2025] **[wd1: Weighted Policy Optimization for Reasoning in Diffusion Language Models](https://arxiv.org/abs/2507.08838)** — Reweights low-advantage samples instead of discarding them, improving diffu-GRPO's sample efficiency and compute cost; surpasses d1 on GSM8K/MATH/Sudoku/Countdown. *Xiaohang Tang, Rares Dolga, Sangwoong Yoon, Ilija Bogunovic*, ICLR 2026. [[code]](https://github.com/xiaohangt/wd1)
+- [05/14/2025] **[Reinforcing the Diffusion Chain of Lateral Thought with Diffusion Language Models (DCoLT)](https://arxiv.org/abs/2505.10446)** — Treats intermediate reverse-sampling steps as "thinking actions" and optimizes the entire denoising trajectory with outcome-reward RL; proposes the Unmask Policy Module (UPM) on LLaDA with Plackett-Luce modeling of unmasking order. *Zemin Huang, Zhiyang Chen, Zijun Wang, et al.*, arXiv 2025. [[code]](https://github.com/maple-research-lab/LLaDOU)
+- [04/16/2025] **[d1: Scaling Reasoning in Diffusion Large Language Models via Reinforcement Learning](https://arxiv.org/abs/2504.12216)** — Proposes diffu-GRPO, using mean-field approximation and random prompt masking to estimate sequence/token log-probabilities in a single forward pass; a two-stage SFT+RL recipe greatly improves LLaDA's math/planning reasoning. **A foundational work in this direction.** *Siyan Zhao, Devaansh Gupta, Qinqing Zheng, Aditya Grover*, NeurIPS 2025. [[code]](https://github.com/dllm-reasoning/d1)
+- [02/03/2025] **[Fine-Tuning Discrete Diffusion Models with Policy Gradient Methods (SEPO)](https://arxiv.org/abs/2502.01384)** — An early exploratory work systematically applying policy gradient methods to fine-tune discrete diffusion models. *Oussama Zekri, Nicolas Boullé*, arXiv 2025. [[code]](https://github.com/ozekri/SEPO)
+- [10/17/2024] **[DRAKES: Fine-Tuning Discrete Diffusion Models via Reward Optimization with Applications to DNA and Protein Design](https://arxiv.org/abs/2410.13643)** — A reward fine-tuning framework for discrete diffusion that backpropagates rewards through the entire reverse chain (bio-sequence design; the method directly applies to text MDMs). *Chenyu Wang et al.*, ICLR 2025. [[code]](https://github.com/ChenyuWang-Monica/DRAKES)
+
+## Preference Optimization
+
+- [10/26/2025] **[Aligning Diffusion Language Models via Unpaired Preference Optimization](https://arxiv.org/abs/2510.23658)** — Adapts KTO (unpaired preference optimization) to dLLMs, using the ELBO in place of intractable log-likelihoods; aligns without paired preference data. *Vaibhav Jindal et al.*, arXiv 2025. [[code]](https://github.com/vaibhavjindal/elbo-kto)
+- [05/25/2025] **[LLaDA 1.5: Variance-Reduced Preference Optimization for Large Language Diffusion Models (VRPO)](https://arxiv.org/abs/2505.19223)** — The first systematic transfer of DPO to masked diffusion LMs; proposes VRPO with unbiased Monte Carlo budget allocation and antithetic sampling to reduce the variance of ELBO-based preference optimization. **A foundational work in dLLM preference optimization.** *Fengqi Zhu, Rongzhen Wang, Shen Nie, et al.*, arXiv 2025. [[code]](https://github.com/ML-GSAI/LLaDA-1.5)
+
+## Safety & Alignment
+
+- [09/27/2025] **[A2D: Any-Order, Any-Step Safety Alignment for Diffusion Language Models](https://arxiv.org/abs/2509.23286)** — A safety alignment method tailored to dLLMs' any-order, any-step decoding, mitigating their unique jailbreak vulnerabilities. *Wonje Jeung et al.*, arXiv 2025.
+- [08/17/2025] **[Where to Start Alignment? Diffusion Large Language Model May Demand a Distinct Position](https://arxiv.org/abs/2508.12398)** — An analytical work showing that the alignment starting point / data position for dLLMs is fundamentally different from AR models, providing design guidance for dLLM alignment. *Zhixin Xie, Xurui Song, Jun Luo*, arXiv 2025.
+
+## SFT & Instruction Tuning
+
+- [12/2025] **[LLaDA2.0: Scaling Up Diffusion Language Models to 100B](https://arxiv.org/abs/2512.15745)** — Scales diffusion language models to 100B with a complete post-training (SFT + alignment) pipeline. *T. Bie, M. Cao, K. Chen, et al.*, arXiv 2025. [[code]](https://github.com/inclusionAI/LLaDA2.X)
+- [09/29/2025] **[LLaDA-MoE: A Sparse MoE Diffusion Language Model](https://arxiv.org/abs/2509.24389)** — A 7B-A1B MoE diffusion model pre-trained on 20T tokens; the Instruct version is obtained via SFT on prompt-response pairs, with detailed disclosure of data engineering and the MoE SFT recipe. *Fengqi Zhu, Zebin You, Jiamei Wen, et al.*, arXiv 2025. [[code]](https://github.com/ML-GSAI/LLaDA)
+- [08/21/2025] **[Dream 7B: Diffusion Large Language Models](https://arxiv.org/abs/2508.15487)** — AR initialization plus context-adaptive token-level noise rescaling; releases Dream-Base and Dream-Instruct (SFT), one of the strongest open instruction-tuned diffusion model baselines. *Jiacheng Ye, Zhihui Xie, Lin Zheng, et al.*, arXiv 2025. [[code]](https://github.com/DreamLM/Dream)
+- [02/14/2025] **[Large Language Diffusion Models (LLaDA)](https://arxiv.org/abs/2502.09992)** — An 8B masked diffusion LM trained from scratch plus SFT (noise applied to responses only), demonstrating for the first time that SFT in the diffusion paradigm can match LLaMA3-8B-level instruction following. *Shen Nie, Fengqi Zhu, Zebin You, et al.*, NeurIPS 2025. [[code]](https://github.com/ML-GSAI/LLaDA)
+- [08/23/2023] **[Diffusion Language Models Can Perform Many Tasks with Scaling and Instruction-Finetuning](https://arxiv.org/abs/2308.12219)** — The earliest diffusion LM instruction-tuning work: MLM pre-training plus "diffusive adaptation" reprogramming, showing instruction tuning gives diffusion LMs zero/few-shot ability. *Jiasheng Ye, Zaixiang Zheng, Yu Bao, et al.*, ICLR 2024. [[code]](https://github.com/yegcjs/DiffusionLLM)
+- [10/2022] **[DiffuSeq: Sequence to Sequence Text Generation with Diffusion Models](https://arxiv.org/abs/2210.08933)** — Casts conditional seq2seq tasks as conditional fine-tuning of a diffusion model; an early representative of "task fine-tuning" for text diffusion (not LLM-scale). *Shansan Gong, Mukai Li, Jiangtao Feng, et al.*, ICLR 2023. [[code]](https://github.com/Shark-NLP/DiffuSeq)
+
+## Training Objectives & Techniques
+
+- [05/07/2026] **[Don't Retrain—Align: Adapting Autoregressive LMs to Diffusion LMs via Representation Alignment](https://arxiv.org/abs/2605.06885)** — Adapts AR LMs into diffusion LMs via representation-aligned fine-tuning without retraining, systematically reviewing conversion recipes such as DiffuGPT/Dream/Fast-dLLM v2. *Felix Z. Peng et al.*, arXiv 2026.
+- [12/2025] **[WeDLM: Reconciling Diffusion Language Models with Standard Causal Attention for Fast Inference](https://arxiv.org/abs/2512.22737)** — Fine-tuning with topological reordering makes dLLMs compatible with standard causal attention and KV cache for streaming parallel decoding. *Aiwei Liu et al.*, arXiv 2025. [[code]](https://github.com/Tencent/WeDLM)
+- [12/2025] **[Efficient-DLM: From Autoregressive to Diffusion Language Models, and Beyond in Speed](https://arxiv.org/abs/2512.14067)** — A systematic study of AR→DLM conversion training recipes (including an instruction-tuning stage) and acceleration. *Yonggan Fu et al.*, arXiv 2025. [[code]](https://github.com/NVlabs/Fast-dLLM)
+- [10/2025] **[UltraLLaDA: Scaling the Context Length to 128K for Diffusion Large Language Models](https://arxiv.org/abs/2510.10481)** — Lightweight post-training (diffusion-aware NTK extrapolation + long-context data mask packing) extends dLLM context to 128K without pre-training from scratch. *Guangxin He, Shen Nie, Fengqi Zhu, et al.*, arXiv 2025. [[code]](https://github.com/Relaxed-System-Lab/UltraLLaDA)
+- [10/07/2025] **[SDAR: A Synergistic Diffusion–AutoRegression Paradigm for Scalable Sequence Generation](https://arxiv.org/abs/2510.06303)** — A unified training paradigm of block-level AR plus intra-block diffusion; 1.7B–30B models are SFT'ed into instruct models. *JetAstra Team*, arXiv 2025. [[code]](https://github.com/JetAstra/SDAR)
+- [09/30/2025] **[Fast-dLLM v2: Efficient Block-Diffusion LLM](https://arxiv.org/abs/2509.26328)** — Converts an AR LLM into a parallel-decoding dLLM with only ~1B tokens of block-diffusion fine-tuning (including instruction data), 500× more data-efficient than the Dream route. *Chengyue Wu, Hao Zhang, Shuchen Xue, et al.*, arXiv 2025. [[code]](https://github.com/NVlabs/Fast-dLLM)
+- [06/2025] **[LongLLaDA: Unlocking Long Context Capabilities in Diffusion LLMs](https://arxiv.org/abs/2506.14429)** — The first study of length extrapolation for dLLMs; NTK-based RoPE extrapolation (training-free) unlocks long context. *Xiaoran Liu, Zhigeng Liu, Zengfeng Huang, et al.*, AAAI 2026. [[code]](https://github.com/OpenMOSS/LongLLaDA)
+- [03/2025] **[Block Diffusion: Interpolating Between Autoregressive and Diffusion Language Models (BD3-LM)](https://arxiv.org/abs/2503.09573)** — A hybrid training objective of block-level autoregression plus intra-block diffusion, enabling arbitrary-length generation and KV cache, alleviating the fixed-length limit of discrete diffusion. *Marianne Arriola, Aaron Gokaslan, Justin T. Chiu, et al.*, ICLR 2025. [[code]](https://github.com/kuleshov-group/bd3lms)
+- [10/23/2024] **[Scaling Diffusion Language Models via Adaptation from Autoregressive Models (DiffuGPT / DiffuLLaMA)](https://arxiv.org/abs/2410.17891)** — Attention-mask annealing plus shift operations continually train GPT-2/LLaMA into diffusion models, explicitly charting the subsequent instruction-tuning route with open-sourced models. **A representative AR→DLM bridging recipe.** *Shansan Gong, Shivam Agarwal, Yizhe Zhang, et al.*, ICLR 2025. [[code]](https://github.com/HKUNLP/DiffuLLaMA)
+- [10/2024] **[Beyond Autoregression: Discrete Diffusion for Complex Reasoning and Planning](https://arxiv.org/abs/2410.14157)** — Multi-granularity diffusion planning (plan-then-generate), demonstrating a training paradigm for discrete diffusion on complex reasoning/planning tasks. *Jiacheng Ye, Jiahui Gao, Shansan Gong, et al.*, ICLR 2025.
+- [09/2024] **[Masked Diffusion Models are Secretly Time-Agnostic Masked Models and Exploit Inaccurate Categorical Sampling](https://arxiv.org/abs/2409.02908)** — A theoretical analysis of the mismatch between MDM training objectives and samplers, pointing out improvable training/inference junctions. *Kaiwen Zheng, Yongxin Chen, Hanzi Mao, et al.*, arXiv 2024.
+- [06/2024] **[Simple and Effective Masked Diffusion Language Models (MDLM)](https://arxiv.org/abs/2406.07524)** — Derives a simplified (Rao-Blackwellized) ELBO for masked diffusion and connects SEDD with the ELBO, becoming the training foundation of LLaDA-style models. *Subham Sekhar Sahoo, Marianne Arriola, Aaron Gokaslan, et al.*, NeurIPS 2024. [[code]](https://github.com/kuleshov-group/mdlm)
+- [06/2024] **[Simplified and Generalized Masked Diffusion for Discrete Data](https://arxiv.org/abs/2406.04329)** — Generalizes and simplifies the masked diffusion objective into a weighted cross-entropy integral, corroborating MDLM. *Jiaxin Shi, Kehan Han, Zhe Wang, et al.*, NeurIPS 2024.
+- [02/2024] **[Diffusion of Thoughts: Chain-of-Thought Reasoning in Diffusion Language Models](https://arxiv.org/abs/2402.07754)** — Incorporates CoT reasoning steps into the diffusion denoising process (DoT / multi-pass DoTMP); a pioneering work in "reasoning-trajectory SFT". *Jiacheng Ye, Shanshan Gong, Lin Zheng, et al.*, NeurIPS 2024. [[code]](https://github.com/HKUNLP/diffusion-of-thoughts)
+- [02/19/2024] **[Text Diffusion with Reinforced Conditioning (TREC)](https://arxiv.org/abs/2402.14843)** — One of the earliest reinforced self-conditioning mechanisms for text diffusion, where the model conditions on its own previous predictions during generation (not an RL method). *Microsoft*, AAAI 2024.
+- [10/2023] **[SEDD: Discrete Diffusion Modeling by Estimating the Ratios of the Data Distribution](https://arxiv.org/abs/2310.16834)** — Proposes the score entropy (DWDSE) objective as a principled alternative to the ELBO for discrete diffusion training, matching GPT-2-level performance. *Aaron Lou, Chenlin Meng, Stefano Ermon*, ICML 2024. [[code]](https://github.com/louaaron/Score-Entropy-Discrete-Diffusion)
+- [07/2021] **[D3PM: Structured Denoising Diffusion Models in Discrete State-Spaces](https://arxiv.org/abs/2107.03006)** — The foundational discrete diffusion work, proposing absorbing-state (mask) transition kernels and hybrid VLB/cross-entropy training objectives. *Jacob Austin, Daniel D. Johnson, Jonathan Ho, et al.*, NeurIPS 2021.
+
+## Efficiency & Distillation
+
+- [06/01/2026] **[EPIC: Efficient and Parallel Inference under CFG Constraints for Diffusion Language Models](https://arxiv.org/abs/2606.00722)** — Efficient parallel inference under context-free grammar (CFG) constrained decoding (guidance × efficiency, inference-side). arXiv 2026.
+- [05/22/2026] **[DiLaDiff: Distilled Latent-Augmented Diffusion for Language Modeling](https://arxiv.org/abs/2605.23605)** — A distilled latent-augmented diffusion language model. arXiv 2026. [[project]](https://jmlemercier.github.io/diladiff/)
+- [05/12/2026] **[Self-Distilled Trajectory-Aware Boltzmann Modeling: Bridging the Training-Inference Discrepancy in DLMs](https://arxiv.org/abs/2605.11854)** — Self-distillation plus trajectory-aware Boltzmann modeling to bridge the DLM training-inference gap. arXiv 2026.
+- [05/11/2026] **[Infinite Mask Diffusion for Few-Step Distillation (IMDM)](https://arxiv.org/abs/2605.10518)** — An infinite-mask diffusion distillation framework for few-step sampling. arXiv 2026. [[code]](https://Ugness.github.io/official_imdm)
+- [05/10/2026] **[TAD: Temporal-Aware Trajectory Self-Distillation for Fast and Accurate Diffusion LLM](https://arxiv.org/abs/2605.09536)** — Temporal-aware trajectory self-distillation that accelerates dLLM sampling while preserving accuracy. arXiv 2026. [[code]](https://github.com/BHmingyang/TAD)
+- [05/08/2026] **[Guidance Is Not a Hyperparameter: Learning Dynamic Control in Diffusion Language Models](https://arxiv.org/abs/2605.07701)** — Turns guidance strength from a hand-tuned hyperparameter into a learnable dynamic control signal during training. arXiv 2026.
+- [04/29/2026] **[TIDE: Cross-Architecture Distillation for Diffusion Large Language Models](https://arxiv.org/abs/2604.26951)** — Studies the reliability of teacher signals — a problem unique to dLLM knowledge distillation — for cross-architecture distillation. arXiv 2026. [[code]](https://github.com/PKU-YuanGroup/TIDE)
+- [04/06/2026] **[FlowLM: Few-Step Language Modeling via Diffusion-to-Flow Adaptation](https://arxiv.org/abs/2605.20199)** — Adapts diffusion LMs into flow-matching-style models for few-step generation. arXiv 2026.
+- [01/12/2026] **[d3LLM: Ultra-Fast Diffusion LLM using Pseudo-Trajectory Distillation](https://arxiv.org/abs/2601.07568)** — Pseudo-trajectory distillation teaches the model which tokens can be confidently decoded at early steps; combined with entropy-based multi-block decoding and KV-cache refresh, up to 10× speedup on LLaDA/Dream. *Yu-Yang Qian et al.*, ICML 2026. [[code]](https://github.com/hao-ai-lab/d3LLM)
+- [01/05/2026] **[CD4LM: Consistency Distillation and aDaptive Decoding for Diffusion Language Models](https://arxiv.org/abs/2601.02236)** — Discrete-space consistency distillation (DSCD) trains a trajectory-invariant student; with confidence-adaptive decoding skips, 5.18× speedup on GSM8K while strictly dominating the accuracy-efficiency Pareto frontier. *Yihao Liang et al.*, arXiv 2026. [[code]](https://github.com/yihao-liang/CDLM)
+- [05/2026] **[Consistent Diffusion Language Models (Multi-Path Consistency)](https://arxiv.org/abs/2605.00161)** — Proposes a "multi-path consistency" principle for training discrete diffusion language models toward consistent few-step generation. *H. Amin et al.*, arXiv (OpenReview).
+- [11/24/2025] **[CDLM: Consistency Diffusion Language Models](https://arxiv.org/abs/2511.19269)** — Brings consistency modeling into DLM training, distilling a full bidirectional teacher and aligning predictions along the decoding trajectory; block-wise causal attention enables KV cache, reducing latency 3.6–14.5×. *Minseo Kim et al.*, arXiv 2025. [[code]](https://github.com/SqueezeAILab/CDLM)
+- [11/04/2025] **[SpecDiff-2: Scaling Diffusion Drafter Alignment for Faster Speculative Decoding](https://arxiv.org/abs/2511.00606)** — Trains a low-latency diffusion model as a drafter for autoregressive LLM speculative decoding and aligns the draft distribution (predecessor: SpecDiff, arXiv 2408.05636, NAACL 2025). *J. Sandler, J. K. Christopher, T. Hartvigsen, N. Fioretto*, arXiv 2025.
+- [10/05/2025] **[Self-Speculative Decoding for Diffusion Large Language Models (SSD)](https://arxiv.org/abs/2510.04147)** — The dLLM itself acts as both drafter and verifier; a hierarchical verification tree validates multiple tokens in a single forward pass for 3.46× lossless speedup. *Yifeng Gao et al.*, arXiv 2025. (code not yet released)
+- [09/30/2025] **[dParallel: Learnable Parallel Decoding for dLLMs](https://arxiv.org/abs/2509.26488)** — Proposes certainty-forcing distillation, fine-tuning on self-generated trajectories so masked tokens reach high confidence in parallel faster; 256→30 steps on GSM8K, 8.5× speedup. *Zigeng Chen, Gongfan Fang, Xinyin Ma, et al.*, ICLR 2026. [[code]](https://github.com/czg1225/dParallel)
+- [09/29/2025] **[Ultra-Fast Language Generation via Discrete Diffusion Divergence Instruct (DiDi-Instruct)](https://arxiv.org/abs/2509.25035)** — Distribution-matching distillation based on integral KL divergence minimization, distilling a dLLM teacher into an 8–16-step few-step student; 64× speedup while surpassing the teacher. *Haoyang Zheng, Xinyang Liu, Cindy Xiangrui Kong, et al.*, ICLR 2026. [[code]](https://github.com/haoyangzheng-ai/didi-instruct)
+- [09/29/2025] **[Learning to Parallel: Accelerating Diffusion LLMs via Learnable Parallel Decoding (Learn2PD)](https://arxiv.org/abs/2509.25188)** — Post-trains a lightweight filter model to predict whether each position's token matches the final output, approximating an oracle parallel-decoding policy; up to 22.58× lossless speedup on LLaDA (57.51× with KV cache). *Wenrui Bao et al.*, arXiv 2025.
+- [09/25/2025] **[WeFT: Weighted Entropy-Driven Fine-Tuning for dLLMs](https://arxiv.org/abs/2509.20863)** — Token-entropy-weighted fine-tuning of dLLMs, reshaping confidence dynamics to support more aggressive parallel decoding. arXiv 2025.
+- [09/22/2025] **[Spiffy: Multiplying Diffusion LLM Acceleration via Lossless Speculative Decoding](https://arxiv.org/abs/2509.18085)** — Auto-speculation speculative decoding designed for dLLMs: offline-calibrated directed draft graphs plus block-wise bidirectional generation; up to 6.3× lossless speedup on LLaDA/Dream/SDAR. *Sudhanshu Agrawal et al.*, arXiv 2025.
+- [05/28/2025] **[Fast-dLLM: Training-free Acceleration of Diffusion LLM by Enabling KV Cache and Parallel Decoding](https://arxiv.org/abs/2505.22618)** — Block-wise approximate KV cache plus confidence-aware parallel decoding, up to 27.6× throughput on LLaDA/Dream; training-free and a foundational work of the confidence-aware decoding lineage. *Chengyue Wu, Hao Zhang, Shuchen Xue, et al.*, ICLR 2026. [[code]](https://github.com/NVlabs/Fast-dLLM)
+- [05/26/2025] **[Adaptive Classifier-Free Guidance via Dynamic Low-Confidence Masking (A-CFG)](https://arxiv.org/abs/2505.20199)** — Adaptive classifier-free guidance that dynamically masks low-confidence tokens for guided dLLM decoding. arXiv 2025. [[code]](https://github.com/pixeli99/A-CFG)
+- [12/13/2024] **[Simple Guidance Mechanisms for Discrete Diffusion Models](https://arxiv.org/abs/2412.10193)** — The first systematic derivation of classifier-free and classifier-based guidance for discrete diffusion, plus a more guidable uniform-noise diffusion model. *Yair Schiff, Subham Sekhar Sahoo, Hao Phung, et al.*, ICLR 2025. [[code]](https://github.com/kuleshov-group/discrete-diffusion-guidance)
+
+## Multimodal & Code dLLMs
+
+### Multimodal dLLMs
+
+- [02/15/2026] **[LaViDa-R1: Advancing Reasoning for Unified Multimodal Diffusion Language Models](https://arxiv.org/abs/2602.14147)** — A unified post-training framework for multimodal diffusion LMs, seamlessly combining SFT with multi-task (GRPO-style) RL, substantially enhancing cross-task reasoning. *Shufan Li, Yuchen Zhu, Juxiang Gu, et al.*, ICML 2026. [[code]](https://github.com/jacklishufan/LaViDa)
+- [12/17/2025] **[DiffusionVL: Translating Any Autoregressive Models into Diffusion Vision Language Models](https://arxiv.org/abs/2512.15713)** — A diffusion fine-tuning framework that "translates" any pre-trained AR (vision-)language model into a diffusion VLM with only a small number of fine-tuning steps. *Linyu Zeng, Jiawei Yao, Bohan Liao, et al.*, ECCV 2026. [[code]](https://github.com/hustvl/DiffusionVL)
+- [12/16/2025] **[Sparse-LaViDa: Sparse Multimodal Discrete Diffusion Language Models](https://arxiv.org/abs/2512.14008)** — Sparsification training and sampling optimization techniques for the LaViDa family, improving multimodal dLLM training/inference efficiency. *Shufan Li, Juxiang Gu, Kangning Liu, et al.*, arXiv 2025. [[code]](https://github.com/jacklishufan/LaViDa)
+- [12/16/2025] **[SDAR-VL: Stable and Efficient Block-wise Diffusion for Vision-Language Understanding](https://arxiv.org/abs/2512.14068)** — A block-diffusion vision-language understanding model adapted from AR via continued block-diffusion training. *Shuang Cheng, Yuhua Jiang, Zineng Zhou, et al.*, arXiv 2025. [[code]](https://github.com/JetAstra/SDAR-VL)
+- [11/10/2025] **[MMaDA-Parallel: Multimodal Large Diffusion Language Models for Thinking-Aware Editing and Generation](https://arxiv.org/abs/2511.09611)** — A parallel "think-then-generate" joint text-image diffusion post-training framework, releasing ParaBench for evaluating reasoning-image alignment. *Ling Yang, Ye Tian, et al.*, ICLR 2026. [[code]](https://github.com/tyfeld/MMaDA-Parallel)
+- [10/22/2025] **[ReDiff: From Denoising to Refining — A Corrective Framework for Vision-Language Diffusion Model](https://arxiv.org/abs/2510.19871)** — A "denoise-then-correct" vision-language diffusion post-training/inference framework that improves dMLLM output quality via corrective refinement. *Yixin Ji, Tao Wang, Yixiao Ge, et al.*, arXiv 2025. [[project]](https://rediff-hku.github.io/)
+- [09/23/2025] **[LaViDa-O: Elastic Large Masked Diffusion Models for Unified Multimodal Understanding and Generation](https://arxiv.org/abs/2509.19244)** — Extends LaViDa into a unified understanding+generation model with unified post-training supporting elastic resolution/length configurations. *Shufan Li et al.*, arXiv 2025. [[code]](https://github.com/jacklishufan/LaViDa)
+- [09/09/2025] **[Lumina-DiMOO: An Omni Diffusion Large Language Model for Multi-Modal Generation and Understanding](https://arxiv.org/abs/2510.06308)** — A purely discrete-diffusion omni-modal unified understanding+generation foundation model, including a multimodal instruction-tuning stage. *Yi Xin, Qi Qin, Siqi Luo, et al.*, arXiv 2025. [[code]](https://github.com/Alpha-VLLM/Lumina-DiMOO)
+- [05/23/2025] **[LaViDa: A Large Diffusion Language Model for Multimodal Understanding](https://arxiv.org/abs/2505.16839)** — Complementary masking training strategy plus two-stage multimodal SFT, building diffusion VLMs on LLaDA/Dream backbones. *Shufan Li, Konstantinos Kallidromitis, Hritik Bansal, et al.*, NeurIPS 2025. [[code]](https://github.com/jacklishufan/LaViDa)
+- [05/22/2025] **[LLaDA-V: Large Language Diffusion Models with Visual Instruction Tuning](https://arxiv.org/abs/2505.16933)** — Pure-diffusion-architecture visual instruction tuning on the LLaDA-8B-Instruct language tower (with data-scaling and attention-mask ablations), surpassing LLaMA3-V baselines in multimodal instruction following. *Zebin You, Shen Nie, Xiaolu Zhang, et al.*, arXiv 2025. [[code]](https://github.com/ML-GSAI/LLaDA)
+- [05/22/2025] **[Dimple: Discrete Diffusion Multimodal Large Language Model with Parallel Decoding](https://arxiv.org/abs/2505.16990)** — One of the first discrete diffusion multimodal LLMs; an AR-then-diffusion hybrid paradigm with structural-prior SFT and confident decoding for multimodal instruction following under parallel decoding. *Runpeng Yu, Xinyin Ma, Xinchao Wang*, arXiv 2025. [[code]](https://github.com/yu-rp/Dimple)
+- [05/21/2025] **[MMaDA: Multimodal Large Diffusion Language Models](https://arxiv.org/abs/2505.15809)** — A diffusion foundation model unifying textual reasoning, multimodal understanding, and text-to-image generation; a three-stage post-training pipeline of mixed long-CoT fine-tuning (SFT) + UniGRPO (unified policy-gradient RL over diffusion trajectories). *Ling Yang, Ye Tian, Bowen Li, et al.*, NeurIPS 2025. [[code]](https://github.com/Gen-Verse/MMaDA)
+- [03/26/2025] **[Unified Multimodal Discrete Diffusion (UniDisc)](https://arxiv.org/abs/2503.20853)** — A single discrete diffusion model unifying joint text+image modeling, supporting fine-tuning for cross-modal infilling and instruction-based editing. *Alexander Swerdlow, Mihir Prabhudesai, Siddharth Gandhi, et al.*, arXiv 2025. [[code]](https://github.com/alexanderswerdlow/unidisc)
+
+### Code dLLMs
+
+- [01/22/2026] **[Stable-DiffCoder: Pushing the Frontier of Code Diffusion Large Language Model](https://arxiv.org/abs/2601.15892)** — A block-diffusion code model reusing Seed-Coder's architecture and data, with a warmup and block-wise clipped noise schedule for continued pre-training plus an SFT pipeline, outperforming AR controls at equal budget. *Chenghao Fan, Wen Heng, Bo Li, et al.*, arXiv 2026. [[code]](https://github.com/ByteDance-Seed/Stable-DiffCoder)
+- [07/15/2025] **[DreamOn: Diffusion Language Models For Code Infilling Beyond Fixed-size Canvas](https://arxiv.org/abs/2602.01326)** — Trains [expand]/[delete] special tokens on Dream-Coder/DiffuCoder, enabling variable-length code infilling. *Zirui Wu, Lin Zheng, Zhihui Xie, et al.*, ICLR 2026. [[code]](https://github.com/DreamLM/DreamOn)
+- [10/2025] **[CoDA: Coding LM via Diffusion Adaptation](https://arxiv.org/abs/2510.03270)** — A coding LM trained via diffusion adaptation (AR→diffusion conversion), open-sourcing the full pipeline. *Salesforce AI Research*, arXiv 2025. [[code]](https://github.com/SalesforceAIResearch/CoDA)
+- [09/29/2025] **[DiffTester: Accelerating Unit Test Generation for Diffusion LLMs via Repetitive Pattern](https://arxiv.org/abs/2509.24975)** — Acceleration and adaptation of unit test generation for diffusion LLMs (including DiffuCoder and Dream-Coder). arXiv 2025.
+- [09/01/2025] **[Dream-Coder 7B: An Open Diffusion Language Model for Code](https://arxiv.org/abs/2509.01142)** — An open code diffusion LM based on the Dream architecture, with continued code pre-training plus instruction tuning, demonstrating any-order generation and strong code infilling. *Zhihui Xie, Jiacheng Ye, Lin Zheng, et al.*, arXiv 2025. [[code]](https://github.com/DreamLM/Dream-Coder)
+- [08/14/2025] **[Diffusion is a Code Repair Operator and Generator](https://arxiv.org/abs/2508.11110)** — Uses code diffusion models as "repair operators", exploring the role of diffusion post-training / iterative denoising in code repair and synthetic data generation. *Mukul Singh et al.*, arXiv 2025.
+- [06/25/2025] **[DiffuCoder: Understanding and Improving Masked Diffusion Models for Code Generation](https://arxiv.org/abs/2506.20639)** — Trains a 7B masked diffusion model on 130B code tokens with systematic decoding-behavior analysis; proposes Coupled-GRPO (coupled sampling of complementary mask pairs at t and T−t for variance reduction), a representative code dLLM + RL work. *Shansan Gong, Ruixiang Zhang, Huangjie Zheng, et al.*, arXiv preprint. [[code]](https://github.com/apple/ml-diffucoder)
+- [10/26/2023] **[CodeFusion: A Pre-trained Diffusion Model for Code Generation](https://arxiv.org/abs/2310.17680)** — A continuous diffusion code generation model (75M scale); an early representative of code diffusion, not LLM-scale and without RL post-training. *Mukul Singh, José Cambronero, Sumit Gulwani, et al.*, EMNLP 2023. [[code]](https://github.com/microsoft/prose-benchmarks/tree/main/CodeFusion)
+
+## Frameworks & Open-source Repos
+
+### Post-training Frameworks & Benchmarks
+
+| Name | Link | Description |
+|---|---|---|
+| Gen-Verse/dLLM-RL (TraceRL) | [GitHub](https://github.com/Gen-Verse/dLLM-RL) | The most comprehensive dLLM RL post-training framework; TraDo model family |
+| ZHZisZZ/dllm | [GitHub](https://github.com/ZHZisZZ/dllm) | Unified dLLM training/evaluation/inference library supporting SFT for LLaDA/Dream (arXiv 2602.22661) |
+| Block-R1 | [GitHub](https://github.com/YanJiangJerry/Block-R1) | Multi-domain dLLM RL post-training benchmark, reproducing d1/WD1 and other algorithms |
+| DiRL | [GitHub](https://github.com/OpenMOSS/DiRL) | Efficient dLLM RL post-training framework (arXiv 2512.22234), proposing DiPO (unbiased GRPO) |
+| DARE | [GitHub](https://github.com/yjyddq/DARE) | Unified dLLM alignment & RL evaluation/execution framework (arXiv 2604.04215), built on verl + OpenCompass |
+
+### Base Model Official Repos
+
+| Repo | Description |
+|---|---|
+| [ML-GSAI/LLaDA](https://github.com/ML-GSAI/LLaDA) | Official LLaDA implementation, with pre-training + SFT guidance |
+| [Gen-Verse/MMaDA](https://github.com/Gen-Verse/MMaDA) | Official MMaDA repo: CoT fine-tuning + UniGRPO |
+| [DreamLM/Dream](https://github.com/DreamLM/Dream) | Official Dream 7B repo |
+| [NVlabs/Fast-dLLM](https://github.com/NVlabs/Fast-dLLM) | Training-free KV cache + parallel decoding acceleration |
+| [apple/ml-diffucoder](https://github.com/apple/ml-diffucoder) | Official DiffuCoder implementation, including Coupled-GRPO |
+| [dllm-reasoning/d1](https://github.com/dllm-reasoning/d1) | Official d1 implementation: masked SFT + diffu-GRPO |
+| [ML-GSAI/LLaDA-V](https://github.com/ML-GSAI/LLaDA-V) | Official LLaDA-V visual instruction-tuning code |
+| [DreamLM/Dream-Coder](https://github.com/DreamLM/Dream-Coder) | Dream-Coder 7B: full adaptation→SFT pipeline |
+| [SalesforceAIResearch/CoDA](https://github.com/SalesforceAIResearch/CoDA) | Salesforce diffusion code language model |
+| [facebookresearch/SPG](https://github.com/facebookresearch/SPG) | Official SPG code (Meta) |
+| [martian422/MaskGRPO](https://github.com/martian422/MaskGRPO) | Official MaskGRPO implementation (ICLR 2026) |
+
+### Related Awesome Lists
+
+- [VILA-Lab/Awesome-DLMs](https://github.com/VILA-Lab/Awesome-DLMs) — Official list of the paper *A Survey on Diffusion Language Models*; its Training Strategies / RL sections are great for cross-checking.
+- [piesauce/awesome-dLLM-resources](https://github.com/piesauce/awesome-dLLM-resources) — A frequently updated list of dLLM papers, models, and libraries.
+- [AIDASLab/Awesome-Diffusion-LLM](https://github.com/AIDASLab/Awesome-Diffusion-LLM) — Includes Alignment & RL and multimodal dLLM categories.
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=hasson827/Awesome-DLMs-post-training&type=Date)](https://star-history.com/#hasson827/Awesome-DLMs-post-training&Date)
+
+## Contributing
+
+Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for the scope, entry format, and PR process before submitting.
+
+## License
+
+This work is licensed under [CC0-1.0](LICENSE) — free to use, share, and build upon.
