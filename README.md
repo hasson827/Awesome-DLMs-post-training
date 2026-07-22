@@ -38,7 +38,7 @@ We cover **masked/absorbing, block, and continuous diffusion LMs**, including **
 - [Inference Acceleration](#inference-acceleration)
 - [Training Objectives & Foundations](#training-objectives--foundations)
 - [Adaptation Techniques](#adaptation-techniques)
-- [Multimodal dLLMs](#multimodal-dllms)
+- [Multimodal dLLMs](#multimodal-dllms) (11)
 - [Code dLLMs](#code-dllms) (7)
 - [Frameworks & Benchmarks](#frameworks--benchmarks)
 - [Star History](#star-history)
@@ -237,7 +237,143 @@ We cover **masked/absorbing, block, and continuous diffusion LMs**, including **
 
 ## Multimodal dLLMs
 
-*This section is currently being curated. Entries will be added here after review.*
+- <details>
+  <summary>
+    <b>[06/2026] dVLA-RL: Reinforcement Learning over Denoising Trajectories for Discrete Diffusion Vision-Language-Action Models</b>
+    <a href="https://arxiv.org/abs/2606.23623"><img src="https://img.shields.io/badge/arXiv-2606.23623-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2606.23623"><img src="https://img.shields.io/badge/AlphaXiv-2606.23623-7c3aed.svg" alt="AlphaXiv"></a>
+  </summary>
+
+  **Authors:** Yuhao Wu, Yitian Liu, Weijie Shen, Mishuo Han, Wenjie Xu, Haotian Liang, Zhongshan Liu, Yinan Mao, Lei Xu, Xinping Guan, Ru Ying, Ran Zheng, Wei Sui, Xiaokang Yang, Wenbo Ding, Yao Mu
+
+  **TL;DR:** Proposes RL over denoising trajectories for discrete diffusion Vision-Language-Action models by modeling the denoising process as an MDP and optimizing the joint path probability. arXiv 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[07/2026] Reinforcing the Generation Order of Multimodal Masked Diffusion Models</b>
+    <a href="https://arxiv.org/abs/2607.08056"><img src="https://img.shields.io/badge/arXiv-2607.08056-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2607.08056"><img src="https://img.shields.io/badge/AlphaXiv-2607.08056-7c3aed.svg" alt="AlphaXiv"></a>
+  </summary>
+
+  **Authors:** Yidong Ouyang, Zhe Wang, Sourav Bhabesh, Dmitriy Bespalov
+
+  **TL;DR:** Uses a learnable control module trained with GRPO to optimize generation order for both text-to-image synthesis and multimodal understanding in masked diffusion models. arXiv 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[06/2026] Efficient Reinforcement for Visual-Textual Thinking with Discrete Diffusion Model</b>
+    <a href="https://arxiv.org/abs/2606.14792"><img src="https://img.shields.io/badge/arXiv-2606.14792-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2606.14792"><img src="https://img.shields.io/badge/AlphaXiv-2606.14792-7c3aed.svg" alt="AlphaXiv"></a>
+  </summary>
+
+  **Authors:** Yoonjeon Kim, Yuhta Takida, Chieh-Hsin Lai, Eunho Yang, Yuki Mitsufuji
+
+  **TL;DR:** Demonstrates that multimodal discrete diffusion models enable efficient visual rollouts for RL in interleaved visual-textual reasoning, with factorized reward assignment to mitigate cross-modal interference. arXiv 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[02/2026] The Design Space of Tri-Modal Masked Diffusion Models</b>
+    <a href="https://arxiv.org/abs/2602.21472"><img src="https://img.shields.io/badge/arXiv-2602.21472-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2602.21472"><img src="https://img.shields.io/badge/AlphaXiv-2602.21472-7c3aed.svg" alt="AlphaXiv"></a>
+  </summary>
+
+  **Authors:** Louis Bethune, Victor Turrisi, Bruno Kacper Mlodozeniec, Pau Rodriguez Lopez, Lokesh Boominathan, Nikhil Bhendawade, Amitis Shidani, Joris Pelemans, Theo X. Olausson, Devon Hjelm, Paul Dixon, Joao Monteiro, Pierre Ablin, Vishnu Banna, Arno Blaas, Nick Henderson, Kari Noriy, Dan Busbridge, Josh Susskind, Marco Cuturi, Irina Belousova, Luca Zappella, Russ Webb, Jason Ramapuram
+
+  **TL;DR:** Introduces the first tri-modal masked diffusion model pretrained from scratch on text, image-text, and audio-text data, with systematic analysis of multimodal scaling laws and an SDE-based batch-size reparameterization. arXiv 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[12/2025] DiffusionVL: Translating Any Autoregressive Models into Diffusion Vision Language Models</b>
+    <a href="https://arxiv.org/abs/2512.15713"><img src="https://img.shields.io/badge/arXiv-2512.15713-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2512.15713"><img src="https://img.shields.io/badge/AlphaXiv-2512.15713-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/hustvl/DiffusionVL"><img src="https://img.shields.io/github/stars/hustvl/DiffusionVL?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Lunbin Zeng, Jingfeng Yao, Bencheng Liao, Hongyuan Tao, Wenyu Liu, Xinggang Wang
+
+  **TL;DR:** Translates pretrained autoregressive vision-language models into the diffusion paradigm via efficient diffusion finetuning, keeping the backbone architecture intact and supporting block decoding with KV-cache reuse. arXiv 2025.
+  </details>
+
+- <details>
+  <summary>
+    <b>[03/2026] Omni-Diffusion: Unified Multimodal Understanding and Generation with Masked Discrete Diffusion</b>
+    <a href="https://arxiv.org/abs/2603.06577"><img src="https://img.shields.io/badge/arXiv-2603.06577-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2603.06577"><img src="https://img.shields.io/badge/AlphaXiv-2603.06577-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/VITA-MLLM/Omni-Diffusion"><img src="https://img.shields.io/github/stars/VITA-MLLM/Omni-Diffusion?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Lijiang Li, Zuwei Long, Yunhang Shen, Heting Gao, Haoyu Cao, Xing Sun, Caifeng Shan, Ran He, Chaoyou Fu
+
+  **TL;DR:** The first any-to-any multimodal language model built entirely on mask-based discrete diffusion, unifying understanding and generation across text, speech, and images. ICML 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[06/2026] PerceptionDLM: Parallel Region Perception with Multimodal Diffusion Language Models</b>
+    <a href="https://arxiv.org/abs/2606.19534"><img src="https://img.shields.io/badge/arXiv-2606.19534-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2606.19534"><img src="https://img.shields.io/badge/AlphaXiv-2606.19534-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/MSALab-PKU/PerceptionDLM"><img src="https://img.shields.io/github/stars/MSALab-PKU/PerceptionDLM?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Yueyi Sun, Yuhao Wang, Jason Li, Ye Tian, Tao Zhang, Jacky Mai, Yihan Wang, Haochen Wang, Jinbin Bai, Ling Yang, Yunhai Tong
+
+  **TL;DR:** A multimodal diffusion language model optimized for efficient parallel region perception, enabling simultaneous captioning of multiple masked regions at both sequence and token levels. arXiv 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[04/2026] Thinking Diffusion: Penalize and Guide Visual-Grounded Reasoning in Diffusion Multimodal Language Models</b>
+    <a href="https://arxiv.org/abs/2604.05497"><img src="https://img.shields.io/badge/arXiv-2604.05497-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2604.05497"><img src="https://img.shields.io/badge/AlphaXiv-2604.05497-7c3aed.svg" alt="AlphaXiv"></a>
+  </summary>
+
+  **Authors:** Keuntae Kim, Mingyu Kang, Yong Suk Choi
+
+  **TL;DR:** Identifies premature answer generation and weak visual grounding in dMLLM CoT reasoning, proposing Position and Step Penalty (PSP) and Visual Reasoning Guidance (VRG) to delay answers and amplify visual signals. CVPR 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[02/2026] LaViDa-R1: Advancing Reasoning for Unified Multimodal Diffusion Language Models</b>
+    <a href="https://arxiv.org/abs/2602.14147"><img src="https://img.shields.io/badge/arXiv-2602.14147-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2602.14147"><img src="https://img.shields.io/badge/AlphaXiv-2602.14147-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/jacklishufan/LaViDa"><img src="https://img.shields.io/github/stars/jacklishufan/LaViDa?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Shufan Li, Yuchen Zhu, Jiuxiang Gu, Kangning Liu, Zhe Lin, Yongxin Chen, Molei Tao, Aditya Grover, Jason Kuen
+
+  **TL;DR:** A multimodal general-purpose reasoning dLLM built with a unified post-training framework integrating SFT and multi-task RL, with techniques such as answer-forcing and tree search. arXiv 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[04/2026] LLaDA2.0-Uni: Unifying Multimodal Understanding and Generation with Diffusion Large Language Model</b>
+    <a href="https://arxiv.org/abs/2604.20796"><img src="https://img.shields.io/badge/arXiv-2604.20796-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2604.20796"><img src="https://img.shields.io/badge/AlphaXiv-2604.20796-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/inclusionAI/LLaDA2.0-Uni"><img src="https://img.shields.io/github/stars/inclusionAI/LLaDA2.0-Uni?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Inclusion AI, Tiwei Bie, Haoxing Chen, Tieyuan Chen, Zhenglin Cheng, Long Cui, Kai Gan, Zhicheng Huang, Zhenzhong Lan, Haoquan Li, Jianguo Li, Tao Lin, Qi Qin, Hongjun Wang, Xiaomei Wang, Haoyuan Wu, Yi Xin, Junbo Zhao
+
+  **TL;DR:** A unified discrete diffusion large language model supporting multimodal understanding and generation within a natively integrated framework, using a semantic discrete tokenizer, MoE backbone, and diffusion decoder. arXiv 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[05/2025] LaViDa: A Large Diffusion Language Model for Multimodal Understanding</b>
+    <a href="https://arxiv.org/abs/2505.16839"><img src="https://img.shields.io/badge/arXiv-2505.16839-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2505.16839"><img src="https://img.shields.io/badge/AlphaXiv-2505.16839-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/jacklishufan/LaViDa"><img src="https://img.shields.io/github/stars/jacklishufan/LaViDa?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Shufan Li, Konstantinos Kallidromitis, Hritik Bansal, Akash Gokul, Yusuke Kato, Kazuki Kozuka, Jason Kuen, Zhe Lin, Kai-Wei Chang, Aditya Grover
+
+  **TL;DR:** A family of vision-language models built on discrete diffusion, jointly fine-tuned for multimodal instruction following with complementary masking, prefix KV cache, and timestep shifting for efficient inference and controllable generation. NeurIPS 2025.
+  </details>
 
 ## Code dLLMs
 
