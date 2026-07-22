@@ -5,8 +5,6 @@
 
 **A curated list of papers, frameworks, and resources on post-training for Diffusion Language Models (dLLMs): SFT, preference optimization, RL, safety alignment, distillation, inference acceleration, adaptation, and domain models.**
 
-[English](README.md) | [中文](README_zh.md)
-
 ## 📢 News
 
 - **[2026-07]** 🎉 Repository restructured around a method-centric post-training taxonomy. All entries now use arXiv + AlphaXiv badges and collapsible details. Contributions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
