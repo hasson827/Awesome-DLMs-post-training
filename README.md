@@ -30,7 +30,7 @@ We cover **masked/absorbing, block, and continuous diffusion LMs**, including **
 
 - [Surveys](#surveys) (4)
 - [Base Models](#base-models) (6)
-- [SFT & Instruction Tuning](#sft--instruction-tuning) (2)
+- [SFT & Instruction Tuning](#sft--instruction-tuning) (3)
 - [Preference Optimization](#preference-optimization)
 - [RL & Reasoning](#rl--reasoning)
 - [Safety & Alignment](#safety--alignment)
@@ -38,8 +38,8 @@ We cover **masked/absorbing, block, and continuous diffusion LMs**, including **
 - [Inference Acceleration](#inference-acceleration)
 - [Training Objectives & Foundations](#training-objectives--foundations)
 - [Adaptation Techniques](#adaptation-techniques)
-- [Multimodal dLLMs](#multimodal-dllms) (11)
-- [Code dLLMs](#code-dllms) (7)
+- [Multimodal dLLMs](#multimodal-dllms) (21)
+- [Code dLLMs](#code-dllms) (13)
 - [Frameworks & Benchmarks](#frameworks--benchmarks)
 - [Star History](#star-history)
 - [Contributing](#contributing)
@@ -205,6 +205,19 @@ We cover **masked/absorbing, block, and continuous diffusion LMs**, including **
   **Authors:** Bumjun Kim, Dongjae Jeon, Dueun Kim, Wonje Jeung, Albert No
 
   **TL;DR:** A simple remedy for `<eos>` overflow in instruction-tuned dLLMs that uses cyclic distinct padding tokens to prevent early termination and improve length robustness. arXiv 2025.
+  </details>
+
+- <details>
+  <summary>
+    <b>[08/2023] Diffusion Language Models Can Perform Many Tasks with Scaling and Instruction-Finetuning</b>
+    <a href="https://arxiv.org/abs/2308.12219"><img src="https://img.shields.io/badge/arXiv-2308.12219-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2308.12219"><img src="https://img.shields.io/badge/AlphaXiv-2308.12219-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/yegcjs/DiffusionLLM"><img src="https://img.shields.io/github/stars/yegcjs/DiffusionLLM?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Jiasheng Ye, Zaixiang Zheng, Yu Bao, Lihua Qian, Quanquan Gu
+
+  **TL;DR:** Scales diffusion language models via masked-language-model pretraining and diffusive adaptation, then unlocks general task solving through task-specific and instruction finetuning, eliciting zero/few-shot in-context learning. arXiv 2023.
   </details>
 
 ## Preference Optimization
@@ -375,6 +388,136 @@ We cover **masked/absorbing, block, and continuous diffusion LMs**, including **
   **TL;DR:** A family of vision-language models built on discrete diffusion, jointly fine-tuned for multimodal instruction following with complementary masking, prefix KV cache, and timestep shifting for efficient inference and controllable generation. NeurIPS 2025.
   </details>
 
+- <details>
+  <summary>
+    <b>[03/2025] Unified Multimodal Discrete Diffusion</b>
+    <a href="https://arxiv.org/abs/2503.20853"><img src="https://img.shields.io/badge/arXiv-2503.20853-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2503.20853"><img src="https://img.shields.io/badge/AlphaXiv-2503.20853-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/alexanderswerdlow/unidisc"><img src="https://img.shields.io/github/stars/alexanderswerdlow/unidisc?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Alexander Swerdlow, Mihir Prabhudesai, Siddharth Gandhi, Deepak Pathak, Katerina Fragkiadaki
+
+  **TL;DR:** Presents the first unified multimodal discrete diffusion model that jointly understands and generates text and images, with controllable quality–diversity trade-offs, inpainting, and editing. arXiv 2025.
+  </details>
+
+- <details>
+  <summary>
+    <b>[05/2025] MMaDA: Multimodal Large Diffusion Language Models</b>
+    <a href="https://arxiv.org/abs/2505.15809"><img src="https://img.shields.io/badge/arXiv-2505.15809-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2505.15809"><img src="https://img.shields.io/badge/AlphaXiv-2505.15809-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/Gen-Verse/MMaDA"><img src="https://img.shields.io/github/stars/Gen-Verse/MMaDA?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Ling Yang, Ye Tian, Bowen Li, Xinchen Zhang, Ke Shen, Yunhai Tong, Mengdi Wang
+
+  **TL;DR:** Introduces a unified modality-agnostic diffusion foundation model with mixed chain-of-thought fine-tuning and UniGRPO reinforcement learning, achieving strong results in textual reasoning, multimodal understanding, and text-to-image generation. NeurIPS 2025.
+  </details>
+
+- <details>
+  <summary>
+    <b>[05/2025] LLaDA-V: Large Language Diffusion Models with Visual Instruction Tuning</b>
+    <a href="https://arxiv.org/abs/2505.16933"><img src="https://img.shields.io/badge/arXiv-2505.16933-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2505.16933"><img src="https://img.shields.io/badge/AlphaXiv-2505.16933-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/ML-GSAI/LLaDA-V"><img src="https://img.shields.io/github/stars/ML-GSAI/LLaDA-V?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Zebin You, Shen Nie, Xiaolu Zhang, Jun Hu, Jun Zhou, Zhiwu Lu, Ji-Rong Wen, Chongxuan Li
+
+  **TL;DR:** Extends LLaDA into a purely diffusion-based multimodal large language model via visual instruction tuning, showing competitive multimodal understanding and favorable data scalability. arXiv 2025.
+  </details>
+
+- <details>
+  <summary>
+    <b>[05/2025] Dimple: Discrete Diffusion Multimodal Large Language Model with Parallel Decoding</b>
+    <a href="https://arxiv.org/abs/2505.16990"><img src="https://img.shields.io/badge/arXiv-2505.16990-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2505.16990"><img src="https://img.shields.io/badge/AlphaXiv-2505.16990-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/yu-rp/Dimple"><img src="https://img.shields.io/github/stars/yu-rp/Dimple?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Runpeng Yu, Xinyin Ma, Xinchao Wang
+
+  **TL;DR:** Proposes the first discrete diffusion MLLM with an autoregressive-to-diffusion training paradigm and confident parallel decoding, matching or exceeding LLaVA-NEXT while reducing generation iterations. arXiv 2025.
+  </details>
+
+- <details>
+  <summary>
+    <b>[09/2025] LaViDa-O: Elastic Large Masked Diffusion Models for Unified Multimodal Understanding and Generation</b>
+    <a href="https://arxiv.org/abs/2509.19244"><img src="https://img.shields.io/badge/arXiv-2509.19244-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2509.19244"><img src="https://img.shields.io/badge/AlphaXiv-2509.19244-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/jacklishufan/LaViDa"><img src="https://img.shields.io/github/stars/jacklishufan/LaViDa?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Shufan Li, Jiuxiang Gu, Kangning Liu, Zhe Lin, Zijun Wei, Aditya Grover, Jason Kuen
+
+  **TL;DR:** A unified masked diffusion model with an Elastic Mixture-of-Transformers architecture that supports object grounding, editing, and high-resolution text-to-image generation with planning and self-reflection. arXiv 2025.
+  </details>
+
+- <details>
+  <summary>
+    <b>[10/2025] Lumina-DiMOO: An Omni Diffusion Large Language Model for Multi-Modal Generation and Understanding</b>
+    <a href="https://arxiv.org/abs/2510.06308"><img src="https://img.shields.io/badge/arXiv-2510.06308-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2510.06308"><img src="https://img.shields.io/badge/AlphaXiv-2510.06308-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/Alpha-VLLM/Lumina-DiMOO"><img src="https://img.shields.io/github/stars/Alpha-VLLM/Lumina-DiMOO?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Yi Xin, Qi Qin, Siqi Luo, Kaiwen Zhu, Juncheng Yan, Yan Tai, Jiayi Lei, Yuewen Cao, Keqi Wang, Yibin Wang, Jinbin Bai, Qian Yu, Dengyang Jiang, Yuandong Pu, Haoxing Chen, Le Zhuo, Junjun He, Gen Luo, Tianbin Li, Ming Hu, Jin Ye, Shenglong Ye, Bo Zhang, Chang Xu, Wenhai Wang, Hongsheng Li, Guangtao Zhai, Tianfan Xue, Bin Fu, Xiaohong Liu, Yu Qiao, Yihao Liu
+
+  **TL;DR:** An open-source omni discrete diffusion model that handles text-to-image, image-to-image, and image understanding in a fully diffusion paradigm with higher sampling efficiency. arXiv 2025.
+  </details>
+
+- <details>
+  <summary>
+    <b>[10/2025] From Denoising to Refining: A Corrective Framework for Vision-Language Diffusion Model</b>
+    <a href="https://arxiv.org/abs/2510.19871"><img src="https://img.shields.io/badge/arXiv-2510.19871-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2510.19871"><img src="https://img.shields.io/badge/AlphaXiv-2510.19871-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/jiyt17/ReDiff"><img src="https://img.shields.io/github/stars/jiyt17/ReDiff?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Yatai Ji, Teng Wang, Yuying Ge, Zhiheng Liu, Sidi Yang, Ying Shan, Ping Luo
+
+  **TL;DR:** Reframes vision-language diffusion generation as active refining via synthetic-error revision and online self-correction, breaking error cascades in parallel decoding. arXiv 2025.
+  </details>
+
+- <details>
+  <summary>
+    <b>[11/2025] MMaDA-Parallel: Multimodal Large Diffusion Language Models for Thinking-Aware Editing and Generation</b>
+    <a href="https://arxiv.org/abs/2511.09611"><img src="https://img.shields.io/badge/arXiv-2511.09611-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2511.09611"><img src="https://img.shields.io/badge/AlphaXiv-2511.09611-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/tyfeld/MMaDA-Parallel"><img src="https://img.shields.io/github/stars/tyfeld/MMaDA-Parallel?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Ye Tian, Ling Yang, Jiongfan Yang, Anran Wang, Yu Tian, Jiani Zheng, Haochen Wang, Zhiyang Teng, Zhuochen Wang, Yinjie Wang, Yunhai Tong, Mengdi Wang, Xiangtai Li
+
+  **TL;DR:** Proposes a parallel multimodal diffusion framework with bidirectional text-image interaction and Parallel Reinforcement Learning for thinking-aware editing and generation, introducing the ParaBench benchmark. arXiv 2025.
+  </details>
+
+- <details>
+  <summary>
+    <b>[12/2025] Sparse-LaViDa: Sparse Multimodal Discrete Diffusion Language Models</b>
+    <a href="https://arxiv.org/abs/2512.14008"><img src="https://img.shields.io/badge/arXiv-2512.14008-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2512.14008"><img src="https://img.shields.io/badge/AlphaXiv-2512.14008-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/jacklishufan/LaViDa"><img src="https://img.shields.io/github/stars/jacklishufan/LaViDa?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Shufan Li, Jiuxiang Gu, Kangning Liu, Zhe Lin, Zijun Wei, Aditya Grover, Jason Kuen
+
+  **TL;DR:** Accelerates masked diffusion sampling by dynamically truncating redundant masked tokens with register tokens and a matching training attention mask, built on LaViDa-O. arXiv 2025.
+  </details>
+
+- <details>
+  <summary>
+    <b>[12/2025] SDAR-VL: Stable and Efficient Block-wise Diffusion for Vision-Language Understanding</b>
+    <a href="https://arxiv.org/abs/2512.14068"><img src="https://img.shields.io/badge/arXiv-2512.14068-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2512.14068"><img src="https://img.shields.io/badge/AlphaXiv-2512.14068-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/JetAstra/SDAR-VL"><img src="https://img.shields.io/github/stars/JetAstra/SDAR-VL?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Shuang Cheng, Yuhua Jiang, Zineng Zhou, Dawei Liu, Wang Tao, Linfeng Zhang, Biqing Qi, Bowen Zhou
+
+  **TL;DR:** Introduces the first large-scale block-wise discrete diffusion framework for vision-language understanding, with asynchronous noise scheduling, mask-ratio scaling, and a beta curriculum for stable training. arXiv 2025.
+  </details>
+
 ## Code dLLMs
 
 - <details>
@@ -462,6 +605,83 @@ We cover **masked/absorbing, block, and continuous diffusion LMs**, including **
   **Authors:** Shuibai Zhang, Fred Zhangzhi Peng, Yiheng Zhang, Jin Pan, Grigorios G. Chrysos
 
   **TL;DR:** Studies corrective behavior in DLMs and proposes a correction-oriented post-training principle that supervises visible incorrect tokens, with a Code Revision Benchmark for evaluation. arXiv 2025.
+  </details>
+
+- <details>
+  <summary>
+    <b>[10/2023] CodeFusion: A Pre-trained Diffusion Model for Code Generation</b>
+    <a href="https://arxiv.org/abs/2310.17680"><img src="https://img.shields.io/badge/arXiv-2310.17680-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2310.17680"><img src="https://img.shields.io/badge/AlphaXiv-2310.17680-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/microsoft/prose-benchmarks/tree/main/CodeFusion"><img src="https://img.shields.io/github/stars/microsoft/prose-benchmarks?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Mukul Singh, José Cambronero, Sumit Gulwani, Vu Le, Carina Negreanu, Gust Verbruggen
+
+  **TL;DR:** Introduces CodeFusion, a 75M-parameter diffusion model for natural-language-to-code generation that iteratively denoises a full program conditioned on the encoded prompt, outperforming much larger autoregressive models in top-3/top-5 accuracy on Bash, Python, and Excel conditional-formatting rules. EMNLP 2023.
+  </details>
+
+- <details>
+  <summary>
+    <b>[08/2025] Diffusion is a code repair operator and generator</b>
+    <a href="https://arxiv.org/abs/2508.11110"><img src="https://img.shields.io/badge/arXiv-2508.11110-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2508.11110"><img src="https://img.shields.io/badge/AlphaXiv-2508.11110-7c3aed.svg" alt="AlphaXiv"></a>
+  </summary>
+
+  **Authors:** Mukul Singh, Gust Verbruggen, Vu Le, Sumit Gulwani
+
+  **TL;DR:** Shows that the late steps of a code diffusion process resemble last-mile repairs, and leverages pretrained code diffusion models for repair by noising broken snippets and by generating synthetic repair training pairs. NeurIPS 2025.
+  </details>
+
+- <details>
+  <summary>
+    <b>[09/2025] Dream-Coder 7B: An Open Diffusion Language Model for Code</b>
+    <a href="https://arxiv.org/abs/2509.01142"><img src="https://img.shields.io/badge/arXiv-2509.01142-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2509.01142"><img src="https://img.shields.io/badge/AlphaXiv-2509.01142-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/DreamLM/Dream-Coder"><img src="https://img.shields.io/github/stars/DreamLM/Dream-Coder?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Zhihui Xie, Jiacheng Ye, Lin Zheng, Jiahui Gao, Jingwei Dong, Zirui Wu, Xueliang Zhao, Shansan Gong, Xin Jiang, Zhenguo Li, Lingpeng Kong
+
+  **TL;DR:** Presents an open 7B discrete diffusion language model for code that adapts an autoregressive checkpoint with continuous-time weighted cross-entropy and RL with verifiable rewards, showing strong pass@1 on LiveCodeBench and competitive results on HumanEval, MBPP, BigCodeBench, and CRUXEval. arXiv 2025.
+  </details>
+
+- <details>
+  <summary>
+    <b>[09/2025] DiffuTester: Accelerating Unit Test Generation for Diffusion LLMs via Mining Structural Pattern</b>
+    <a href="https://arxiv.org/abs/2509.24975"><img src="https://img.shields.io/badge/arXiv-2509.24975-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2509.24975"><img src="https://img.shields.io/badge/AlphaXiv-2509.24975-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/THU-Agent/DiffuTester"><img src="https://img.shields.io/github/stars/THU-Agent/DiffuTester?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Lekang Yang, Yuetong Liu, Yitong Zhang, Jia Li
+
+  **TL;DR:** Proposes a decoding acceleration framework for diffusion LLM-based unit test generation that mines shared structural patterns across abstract syntax trees to decode repetitive tokens without sacrificing test coverage. ISSTA 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[09/2025] CoDA: Coding LM via Diffusion Adaptation</b>
+    <a href="https://arxiv.org/abs/2510.03270"><img src="https://img.shields.io/badge/arXiv-2510.03270-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2510.03270"><img src="https://img.shields.io/badge/AlphaXiv-2510.03270-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/SalesforceAIResearch/CoDA"><img src="https://img.shields.io/github/stars/SalesforceAIResearch/CoDA?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Haolin Chen, Shiyu Wang, Can Qin, Bo Pang, Zuxin Liu, Jielin Qiu, Jianguo Zhang, Yingbo Zhou, Zeyuan Chen, Ran Xu, Shelby Heinecke, Silvio Savarese, Caiming Xiong, Huan Wang, Weiran Yao
+
+  **TL;DR:** Introduces CoDA-1.7B, a lightweight diffusion coder trained via large-scale diffusion pre-training, code-centric mid-training, and instruction tuning with confidence-guided sampling, matching or surpassing 7B diffusion baselines on HumanEval, MBPP, and EvalPlus. arXiv 2025.
+  </details>
+
+- <details>
+  <summary>
+    <b>[02/2026] DreamOn: Diffusion Language Models For Code Infilling Beyond Fixed-size Canvas</b>
+    <a href="https://arxiv.org/abs/2602.01326"><img src="https://img.shields.io/badge/arXiv-2602.01326-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2602.01326"><img src="https://img.shields.io/badge/AlphaXiv-2602.01326-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/DreamLM/DreamOn"><img src="https://img.shields.io/github/stars/DreamLM/DreamOn?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Zirui Wu, Lin Zheng, Zhihui Xie, Jiacheng Ye, Jiahui Gao, Shansan Gong, Yansong Feng, Zhenguo Li, Wei Bi, Guorui Zhou, Lingpeng Kong
+
+  **TL;DR:** Introduces dynamic length-control states that let code diffusion models autonomously expand or contract the generation canvas, removing the fixed-size-mask limitation and matching oracle-length and autoregressive infilling performance on HumanEval-Infilling and SantaCoder-FIM. ICLR 2026.
   </details>
 
 ## Frameworks & Benchmarks
