@@ -39,7 +39,7 @@ We cover **masked/absorbing, block, and continuous diffusion LMs**, including **
 - [Training Objectives & Foundations](#training-objectives--foundations)
 - [Adaptation Techniques](#adaptation-techniques)
 - [Multimodal dLLMs](#multimodal-dllms)
-- [Code dLLMs](#code-dllms)
+- [Code dLLMs](#code-dllms) (7)
 - [Frameworks & Benchmarks](#frameworks--benchmarks)
 - [Star History](#star-history)
 - [Contributing](#contributing)
@@ -241,7 +241,92 @@ We cover **masked/absorbing, block, and continuous diffusion LMs**, including **
 
 ## Code dLLMs
 
-*This section is currently being curated. Entries will be added here after review.*
+- <details>
+  <summary>
+    <b>[06/2025] DiffuCoder: Understanding and Improving Masked Diffusion Models for Code Generation</b>
+    <a href="https://arxiv.org/abs/2506.20639"><img src="https://img.shields.io/badge/arXiv-2506.20639-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2506.20639"><img src="https://img.shields.io/badge/AlphaXiv-2506.20639-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/apple/ml-diffucoder"><img src="https://img.shields.io/github/stars/apple/ml-diffucoder?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Shansan Gong, Ruixiang Zhang, Huangjie Zheng, Jiatao Gu, Navdeep Jaitly, Lingpeng Kong, Yizhe Zhang
+
+  **TL;DR:** A 7B masked diffusion code model trained on 130B tokens, analyzing dLLM decoding behavior and proposing coupled-GRPO for diffusion-native RL training on code generation benchmarks. arXiv 2025.
+  </details>
+
+- <details>
+  <summary>
+    <b>[01/2026] Stable-DiffCoder: Pushing the Frontier of Code Diffusion Large Language Model</b>
+    <a href="https://arxiv.org/abs/2601.15892"><img src="https://img.shields.io/badge/arXiv-2601.15892-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2601.15892"><img src="https://img.shields.io/badge/AlphaXiv-2601.15892-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/ByteDance-Seed/Stable-DiffCoder"><img src="https://img.shields.io/github/stars/ByteDance-Seed/Stable-DiffCoder?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Chenghao Fan, Wen Heng, Bo Li, Sichen Liu, Yuxuan Song, Jing Su, Xiaoye Qu, Kai Shen, Wei Wei
+
+  **TL;DR:** A block diffusion code model reusing Seed-Coder's architecture and data, with block diffusion continual pretraining and SFT, outperforming AR counterparts on code benchmarks. arXiv 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[05/2026] Beyond Mode-Seeking RL: Trajectory-Balance Post-Training for Diffusion Language Models</b>
+    <a href="https://arxiv.org/abs/2605.13935"><img src="https://img.shields.io/badge/arXiv-2605.13935-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2605.13935"><img src="https://img.shields.io/badge/AlphaXiv-2605.13935-7c3aed.svg" alt="AlphaXiv"></a>
+  </summary>
+
+  **Authors:** Saba Ahmadi, Prasanna Parthasarathi, Yufei Cui
+
+  **TL;DR:** Proposes TraFL, a trajectory-balance objective for diffusion LM post-training that mitigates mode-seeking and improves coverage across math and code generation benchmarks. arXiv 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[05/2026] Beyond Execution: Static-Analysis Rewards and Hint-Conditioned Diffusion RL for Code Generation</b>
+    <a href="https://arxiv.org/abs/2605.17174"><img src="https://img.shields.io/badge/arXiv-2605.17174-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2605.17174"><img src="https://img.shields.io/badge/AlphaXiv-2605.17174-7c3aed.svg" alt="AlphaXiv"></a>
+  </summary>
+
+  **Authors:** Shuyin Ouyang, Zhaozhi Qian, Faroq AL-Tam, Muhammad AL-Qurishi, Jie M. Zhang
+
+  **TL;DR:** A systematic study of RL post-training for diffusion-based code generation using execution-free (static-analysis) rewards and hint-conditioned sampling. arXiv 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[02/2026] AnCoder: Anchored Code Generation via Discrete Diffusion Models</b>
+    <a href="https://arxiv.org/abs/2602.17688"><img src="https://img.shields.io/badge/arXiv-2602.17688-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2602.17688"><img src="https://img.shields.io/badge/AlphaXiv-2602.17688-7c3aed.svg" alt="AlphaXiv"></a>
+  </summary>
+
+  **Authors:** Anton Xue, Litu Rout, Constantine Caramanis, Sanjay Shakkottai
+
+  **TL;DR:** Introduces AnchorTree, which uses AST structure to anchor the diffusion process and prioritize syntactically and semantically salient tokens for higher-quality code generation. arXiv 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[05/2026] Constrained Code Generation with Discrete Diffusion</b>
+    <a href="https://arxiv.org/abs/2605.16829"><img src="https://img.shields.io/badge/arXiv-2605.16829-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2605.16829"><img src="https://img.shields.io/badge/AlphaXiv-2605.16829-7c3aed.svg" alt="AlphaXiv"></a>
+  </summary>
+
+  **Authors:** Lize Shao, Michael Cardei, Zichen Xie, Ferdinando Fioretto, Wenxi Wang
+
+  **TL;DR:** Introduces CDC, a training-free neurosymbolic framework that enforces functional and security constraints during discrete diffusion decoding for code generation. arXiv 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[12/2025] Corrective Diffusion Language Models</b>
+    <a href="https://arxiv.org/abs/2512.15596"><img src="https://img.shields.io/badge/arXiv-2512.15596-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2512.15596"><img src="https://img.shields.io/badge/AlphaXiv-2512.15596-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/zhangshuibai/CDLM"><img src="https://img.shields.io/github/stars/zhangshuibai/CDLM?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Shuibai Zhang, Fred Zhangzhi Peng, Yiheng Zhang, Jin Pan, Grigorios G. Chrysos
+
+  **TL;DR:** Studies corrective behavior in DLMs and proposes a correction-oriented post-training principle that supervises visible incorrect tokens, with a Code Revision Benchmark for evaluation. arXiv 2025.
+  </details>
 
 ## Frameworks & Benchmarks
 
