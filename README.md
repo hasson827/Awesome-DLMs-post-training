@@ -40,7 +40,6 @@ We cover **masked/absorbing, block, and continuous diffusion LMs**, including **
 - [Adaptation Techniques](#adaptation-techniques)
 - [Multimodal dLLMs](#multimodal-dllms) (21)
 - [Code dLLMs](#code-dllms) (13)
-- [Frameworks & Benchmarks](#frameworks--benchmarks)
 - [Star History](#star-history)
 - [Contributing](#contributing)
 - [License](#license)
@@ -683,10 +682,6 @@ We cover **masked/absorbing, block, and continuous diffusion LMs**, including **
 
   **TL;DR:** Introduces dynamic length-control states that let code diffusion models autonomously expand or contract the generation canvas, removing the fixed-size-mask limitation and matching oracle-length and autoregressive infilling performance on HumanEval-Infilling and SantaCoder-FIM. ICLR 2026.
   </details>
-
-## Frameworks & Benchmarks
-
-*This section is currently being curated. Entries will be added here after review.*
 
 ## Star History
 
