@@ -34,12 +34,13 @@ We cover **masked/absorbing, block, and continuous diffusion LMs**, including **
 - [Preference Optimization](#preference-optimization)
 - [RL & Reasoning](#rl--reasoning)
 - [Safety & Alignment](#safety--alignment)
-- [Distillation](#distillation)
-- [Inference Acceleration](#inference-acceleration)
-- [Training Objectives & Foundations](#training-objectives--foundations)
-- [Adaptation Techniques](#adaptation-techniques)
+- [Distillation](#distillation) (1)
+- [Inference Acceleration](#inference-acceleration) (2)
+- [Training Objectives & Foundations](#training-objectives--foundations) (2)
+- [Adaptation Techniques](#adaptation-techniques) (8)
 - [Multimodal dLLMs](#multimodal-dllms) (21)
 - [Code dLLMs](#code-dllms) (13)
+- [Frameworks & Benchmarks](#frameworks--benchmarks)
 - [Star History](#star-history)
 - [Contributing](#contributing)
 - [License](#license)
@@ -233,19 +234,176 @@ We cover **masked/absorbing, block, and continuous diffusion LMs**, including **
 
 ## Distillation
 
-*This section is currently being curated. Entries will be added here after review.*
+- <details>
+  <summary>
+    <b>[04/2026] Turning the TIDE: Cross-Architecture Distillation for Diffusion Large Language Models</b>
+    <a href="https://arxiv.org/abs/2604.26951"><img src="https://img.shields.io/badge/arXiv-2604.26951-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2604.26951"><img src="https://img.shields.io/badge/AlphaXiv-2604.26951-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/PKU-YuanGroup/TIDE"><img src="https://img.shields.io/github/stars/PKU-YuanGroup/TIDE?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Gongbo Zhang, Wen Wang, Ye Tian, Li Yuan
+
+  **TL;DR:** Cross-architecture distillation framework compressing 8B dense / 16B MoE dLLM teachers into a 0.6B student via TIDAL, CompDemo, and Reverse CALM. arXiv 2026.
+  </details>
 
 ## Inference Acceleration
 
-*This section is currently being curated. Entries will be added here after review.*
+- <details>
+  <summary>
+    <b>[05/2026] Elastic-dLLM: Position Preserving Context Compression and Augmentation of Diffusion LLMs</b>
+    <a href="https://arxiv.org/abs/2605.18165"><img src="https://img.shields.io/badge/arXiv-2605.18165-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2605.18165"><img src="https://img.shields.io/badge/AlphaXiv-2605.18165-7c3aed.svg" alt="AlphaXiv"></a>
+  </summary>
+
+  **Authors:** Junyi Wu, Tianchen Zhao, Shaoqiu Zhang, Linfeng Zhang, Guohao Dai, Yu Wang
+
+  **TL;DR:** Training-free position-preserving [MASK]-token compression and terminal-aware augmentation that speeds up dLLM decoding and enables longer-context scaling. arXiv 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[09/2025] Fast-dLLM v2: Efficient Block-Diffusion LLM</b>
+    <a href="https://arxiv.org/abs/2509.26328"><img src="https://img.shields.io/badge/arXiv-2509.26328-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2509.26328"><img src="https://img.shields.io/badge/AlphaXiv-2509.26328-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/NVlabs/Fast-dLLM"><img src="https://img.shields.io/github/stars/NVlabs/Fast-dLLM?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Chengyue Wu, Hao Zhang, Shuchen Xue, Shizhe Diao, Yonggan Fu, Zhijian Liu, Pavlo Molchanov, Ping Luo, Song Han, Enze Xie
+
+  **TL;DR:** Adapts pretrained AR models into a block-diffusion dLLM with hierarchical KV caches and parallel decoding, achieving ~2.5× speedup over AR baselines. arXiv 2025.
+  </details>
 
 ## Training Objectives & Foundations
 
-*This section is currently being curated. Entries will be added here after review.*
+- <details>
+  <summary>
+    <b>[06/2026] Adaptive Block Diffusion: Resolving Training-Inference Mismatch in Diffusion Language Models</b>
+    <a href="https://arxiv.org/abs/2606.29275"><img src="https://img.shields.io/badge/arXiv-2606.29275-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2606.29275"><img src="https://img.shields.io/badge/AlphaXiv-2606.29275-7c3aed.svg" alt="AlphaXiv"></a>
+  </summary>
+
+  **Authors:** Gagan Jain
+
+  **TL;DR:** Trains a single DLM over a distribution of prefix-window configurations so it generalizes across arbitrary inference block sizes without off-grid degradation. arXiv 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[01/2026] Mechanism Shift During Post-training from Autoregressive to Masked Diffusion Language Models</b>
+    <a href="https://arxiv.org/abs/2601.14758"><img src="https://img.shields.io/badge/arXiv-2601.14758-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2601.14758"><img src="https://img.shields.io/badge/AlphaXiv-2601.14758-7c3aed.svg" alt="AlphaXiv"></a>
+  </summary>
+
+  **Authors:** Injin Kong, Hyoungjoon Lee, Yohan Jo
+
+  **TL;DR:** Circuit analysis showing AR→MDM post-training reorganizes internal computation in a task-dependent way rather than merely repackaging AR inference. arXiv 2026.
+  </details>
 
 ## Adaptation Techniques
 
-*This section is currently being curated. Entries will be added here after review.*
+- <details>
+  <summary>
+    <b>[06/2026] Data-Efficient Autoregressive-to-Diffusion Language Models via On-Policy Distillation</b>
+    <a href="https://arxiv.org/abs/2606.06712"><img src="https://img.shields.io/badge/arXiv-2606.06712-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2606.06712"><img src="https://img.shields.io/badge/AlphaXiv-2606.06712-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/divelab/OPDLM"><img src="https://img.shields.io/github/stars/divelab/OPDLM?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Xingyu Su, Jacob Helwig, Shubham Parashar, Atharv Chagi, Lakshmi Jotsna, Degui Zhi, James Caverlee, Dileep Kalathil, Shuiwang Ji
+
+  **TL;DR:** Converts pretrained AR LMs into block-diffusion DLMs with 15×–7,000× fewer tokens by distilling on the model's own decoding trajectories. arXiv 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[05/2026] NaRA: Noise-Aware LoRA for Parameter-Efficient Fine-Tuning of Diffusion LLMs</b>
+    <a href="https://arxiv.org/abs/2605.29716"><img src="https://img.shields.io/badge/arXiv-2605.29716-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2605.29716"><img src="https://img.shields.io/badge/AlphaXiv-2605.29716-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/generaldi/NaRA"><img src="https://img.shields.io/github/stars/generaldi/NaRA?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Shuaidi Wang, Zhan Zhuang, Ruping Huang, Yu Zhang
+
+  **TL;DR:** Noise-level-conditioned LoRA variant that uses a shared hypernetwork to generate dynamic low-rank updates along the dLLM denoising trajectory. arXiv 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[05/2026] Don't Retrain, Align: Adapting Autoregressive LMs to Diffusion LMs via Representation Alignment</b>
+    <a href="https://arxiv.org/abs/2605.06885"><img src="https://img.shields.io/badge/arXiv-2605.06885-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2605.06885"><img src="https://img.shields.io/badge/AlphaXiv-2605.06885-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/pengzhangzhi/Open-dLLM"><img src="https://img.shields.io/github/stars/pengzhangzhi/Open-dLLM?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Fred Zhangzhi Peng, Alexis Fox, Anru R. Zhang, Alexander Tong
+
+  **TL;DR:** Adapts AR LMs to diffusion LMs by aligning hidden states to a frozen AR teacher, accelerating training up to 4× and improving low-data adaptation. arXiv 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[12/2025] Efficient-DLM: From Autoregressive to Diffusion Language Models, and Beyond in Speed</b>
+    <a href="https://arxiv.org/abs/2512.14067"><img src="https://img.shields.io/badge/arXiv-2512.14067-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2512.14067"><img src="https://img.shields.io/badge/AlphaXiv-2512.14067-7c3aed.svg" alt="AlphaXiv"></a>
+  </summary>
+
+  **Authors:** Yonggan Fu, Lexington Whalen, Zhifan Ye, Xin Dong, Shizhe Diao, Jingyu Liu, Chengyue Wu, Hao Zhang, Enze Xie, Song Han, Maksim Khadkevich, Jan Kautz, Yingyan Celine Lin, Pavlo Molchanov
+
+  **TL;DR:** Proposes a block-wise attention training recipe and position-dependent masking strategy for converting pretrained AR models into fast, KV-cacheable dLMs. arXiv 2025.
+  </details>
+
+- <details>
+  <summary>
+    <b>[12/2025] From Next-Token to Next-Block: A Principled Adaptation Path for Diffusion LLMs</b>
+    <a href="https://arxiv.org/abs/2512.06776"><img src="https://img.shields.io/badge/arXiv-2512.06776-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2512.06776"><img src="https://img.shields.io/badge/AlphaXiv-2512.06776-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/YuchuanTian/NBDiff"><img src="https://img.shields.io/github/stars/YuchuanTian/NBDiff?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Yuchuan Tian, Yuchen Liang, Shuo Zhang, Yingte Shu, Guangwen Yang, Wei He, Sibo Fang, Tianyu Guo, Kai Han, Chao Xu, Hanting Chen, Xinghao Chen, Yunhe Wang
+
+  **TL;DR:** Reframes AR→DLM conversion as a smooth block-size growth path with context-causal prefixes and AR guidance, yielding the NBDiff-7B model. arXiv 2025.
+  </details>
+
+- <details>
+  <summary>
+    <b>[10/2025] UltraLLaDA: Scaling the Context Length to 128K for Diffusion Large Language Models</b>
+    <a href="https://arxiv.org/abs/2510.10481"><img src="https://img.shields.io/badge/arXiv-2510.10481-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2510.10481"><img src="https://img.shields.io/badge/AlphaXiv-2510.10481-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/Relaxed-System-Lab/UltraLLaDA"><img src="https://img.shields.io/github/stars/Relaxed-System-Lab/UltraLLaDA?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Guangxin He, Shen Nie, Fengqi Zhu, Yuankang Zhao, Tianyi Bai, Ran Yan, Jie Fu, Chongxuan Li, Binhang Yuan
+
+  **TL;DR:** Lightweight post-training extension of LLaDA to 128K tokens using a diffusion-aware RoPE/NTK extension and tailored masking strategies. arXiv 2025.
+  </details>
+
+- <details>
+  <summary>
+    <b>[06/2025] LongLLaDA: Unlocking Long Context Capabilities in Diffusion LLMs</b>
+    <a href="https://arxiv.org/abs/2506.14429"><img src="https://img.shields.io/badge/arXiv-2506.14429-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2506.14429"><img src="https://img.shields.io/badge/AlphaXiv-2506.14429-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/OpenMOSS/LongLLaDA"><img src="https://img.shields.io/github/stars/OpenMOSS/LongLLaDA?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Xiaoran Liu, Yuerong Song, Zhigeng Liu, Zengfeng Huang, Qipeng Guo, Ziwei He, Xipeng Qiu
+
+  **TL;DR:** Training-free NTK-based RoPE extrapolation that exploits diffusion LMs' stable length extrapolation for long-context tasks. AAAI 2026.
+  </details>
+
+- <details>
+  <summary>
+    <b>[10/2024] Scaling Diffusion Language Models via Adaptation from Autoregressive Models</b>
+    <a href="https://arxiv.org/abs/2410.17891"><img src="https://img.shields.io/badge/arXiv-2410.17891-b31b1b.svg" alt="arXiv"></a>
+    <a href="https://www.alphaxiv.org/abs/2410.17891"><img src="https://img.shields.io/badge/AlphaXiv-2410.17891-7c3aed.svg" alt="AlphaXiv"></a>
+    <a href="https://github.com/HKUNLP/DiffuLLaMA"><img src="https://img.shields.io/github/stars/HKUNLP/DiffuLLaMA?style=social&label=Stars" alt="GitHub Stars"></a>
+  </summary>
+
+  **Authors:** Shansan Gong, Shivam Agarwal, Yizhe Zhang, Jiacheng Ye, Lin Zheng, Mukai Li, Chenxin An, Peilin Zhao, Wei Bi, Jiawei Han, Hao Peng, Lingpeng Kong
+
+  **TL;DR:** Converts pretrained AR models (GPT-2/LLaMA) into diffusion LMs via continual pretraining, releasing DiffuGPT/DiffuLLaMA up to 7B. ICLR 2025.
+  </details>
 
 ## Multimodal dLLMs
 
